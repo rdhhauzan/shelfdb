@@ -1,0 +1,36 @@
+{
+  "name": "shelfdb",
+  "version": "0.1.0",
+  "description": "ShelfDB — a tiny self-hosted JSON document database with REST API and CLI",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js serve",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write .",
+    "test": "vitest"
+  },
+  "bin": {
+    "shelfdb": "bin/shelfdb"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.1",
+    "commander": "^12.1.0",
+    "fastify": "^4.27.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/uuid": "^9.0.7",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}

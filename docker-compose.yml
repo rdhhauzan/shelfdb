@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  shelfdb:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - SHELFDB_TOKEN=${SHELFDB_TOKEN}
+      - SHELFDB_CORS=${SHELFDB_CORS}
+    volumes:
+      - ./data:/app/data
+      - ./backups:/app/backups
+
