@@ -1,7 +1,7 @@
 ShelfDB — Tiny JSON Document DB
 ================================
 
-ShelfDB is a tiny self-hosted JSON document database with an append-only journal, periodic compaction, REST API, and CLI. No external dependencies; just clone, install, and run.
+ShelfDB is a tiny self-hosted JSON document database with an append-only journal, periodic compaction, REST API, and CLI. No external dependencies.
 
 Features
 - Fastify REST API
