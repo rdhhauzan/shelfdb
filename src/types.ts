@@ -24,3 +24,6 @@ export type ShelfDBConfig = {
   autoCompactIntervalMs: number;
 };
 
+export type ShelfDBOptions = Partial<ShelfDBConfig> & {
+  dataDir?: string;
+};

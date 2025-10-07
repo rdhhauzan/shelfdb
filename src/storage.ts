@@ -4,7 +4,7 @@ import zlib from 'node:zlib';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { BulkOperation, Document, QueryOptions, ShelfDBConfig } from './types.js';
+import { BulkOperation, Document, QueryOptions, ShelfDBConfig, ShelfDBOptions } from './types.js';
 import {
   appendFileSync,
   atomicWriteFileSync,
@@ -29,15 +29,19 @@ export class ShelfDB {
   private config: ShelfDBConfig;
   private compactTimer?: NodeJS.Timeout;
 
-  constructor(config?: Partial<ShelfDBConfig>) {
-    const dataDir = path.resolve('data');
-    const dataFile = path.join(dataDir, 'shelfdb.json');
+  constructor(options?: ShelfDBOptions) {
+    const dataDir = path.resolve(
+      options?.dataDir || process.env.SHELFDB_DATA_DIR || 'data'
+    );
+    const backupsDir = options?.backupsDir || 'backups';
+    const dataFile = options?.dataFile || path.join(dataDir, 'shelfdb.json');
+    const journalFile = options?.journalFile || path.join(dataDir, 'shelfdb.journal.ndjson');
+    const autoMs = 5 * 60 * 1000
     this.config = {
       dataFile,
-      journalFile: path.join(dataDir, 'shelfdb.journal.ndjson'),
-      backupsDir: path.join('backups'),
-      autoCompactIntervalMs: 5 * 60 * 1000,
-      ...config,
+      journalFile,
+      backupsDir,
+      autoCompactIntervalMs: autoMs,
     };
     ensureDirSync(path.dirname(this.config.dataFile));
     ensureDirSync(this.config.backupsDir);

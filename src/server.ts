@@ -9,6 +9,7 @@ type ServeOptions = {
   port?: number;
   cors?: boolean;
   token?: string | null;
+  dataDir?: string;
 };
 
 function isWriteMethod(method: string, url: string) {
@@ -62,6 +63,13 @@ export async function createServer(db: ShelfDB, options: ServeOptions = {}): Pro
       offset: q.offset ? Number(q.offset) : undefined,
       sort: q.sort,
     };
+    // Basic validation
+    if (opts.limit !== undefined && (!Number.isFinite(opts.limit) || opts.limit < 0)) {
+      throw new Error('Invalid limit');
+    }
+    if (opts.offset !== undefined && (!Number.isFinite(opts.offset) || opts.offset < 0)) {
+      throw new Error('Invalid offset');
+    }
     return db.query(params.collection, opts);
   });
 
