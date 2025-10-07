@@ -1,3 +1,17 @@
 #!/usr/bin/env node
-import('../dist/cli.js');
+import fs from 'node:fs';
+import path from 'node:path';
+import url from 'node:url';
 
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const distPath = path.resolve(__dirname, '../dist/cli.js');
+
+if (fs.existsSync(distPath)) {
+  const rel = path.relative(__dirname, distPath).split(path.sep).join('/');
+  await import('./' + rel);
+} else {
+  console.error(
+    'dist/cli.js not found. Build with "npm run build" or run dev with "npm run dev".'
+  );
+  process.exit(1);
+}
