@@ -20,7 +20,7 @@ Install
 
 Run
 - `./bin/shelfdb serve --port 3000`
-- Or `npm start`
+- Or `npm run dev`
 
 Data Location
 - Snapshot: `data/shelfdb.json`
