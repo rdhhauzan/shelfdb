@@ -15,12 +15,12 @@ Requirements
 - Node.js 20+
 
 Install
-- `npm install`
-- `npm run build`
+- Local: `npm install && npm run build`
+ - Global: `npm install -g shelfdb-cli`
 
 Run
-- `./bin/shelfdb serve --port 3000`
-- Or `npm run dev`
+- Local: `./bin/shelfdb serve --port 3000` or `npm start`
+- Global: `shelfdb serve --port 3000`
 
 Data Location
 - Snapshot: `data/shelfdb.json`
@@ -81,4 +81,3 @@ Docker
 
 License
 MIT License
-

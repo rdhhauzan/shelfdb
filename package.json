@@ -1,8 +1,8 @@
 {
-  "name": "shelfdb",
+  "name": "shelfdb-cli",
   "version": "0.1.0",
   "description": "ShelfDB — a tiny self-hosted JSON document database with REST API and CLI",
-  "private": true,
+  
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -13,11 +13,19 @@
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write .",
     "test": "vitest",
-    "dev": "tsx src/cli.ts serve"
+    "dev": "tsx src/cli.ts serve",
+    "prepublishOnly": "npm run build"
   },
   "bin": {
     "shelfdb": "bin/shelfdb"
   },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
   "dependencies": {
     "@fastify/cors": "^10.0.1",
     "commander": "^12.1.0",
